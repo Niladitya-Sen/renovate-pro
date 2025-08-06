@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Devart (www.devart.com), SQL document design file -->
+<!-- Modifying this generated file will probably render it invalid -->
+<Document>
+  <Properties>
+    <Type>SQL Document Design</Type>
+    <DatabaseProvider>59f90733-4d68-4fdf-82a7-f0fcbf5460aa</DatabaseProvider>
+    <ProviderVersion>10.0.225.0</ProviderVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+  </Properties>
+  <Connection>
+    <ConnectionModel>
+      <PropertyValue Name="Database">59f90733-4d68-4fdf-82a7-f0fcbf5460aa</PropertyValue>
+      <PropertyValue Name="Id">2a66a624-da59-468c-96f4-31d9deb92654</PropertyValue>
+      <PropertyValue Name="ConnectionString" xml:space="preserve">User Id=RenoSwiftAppUsr;Host=103.239.89.99;Database=renoswiftappdb;Character Set=utf8</PropertyValue>
+    </ConnectionModel>
+    <Database>renoswiftappdb</Database>
+  </Connection>
+  <Views ShowAdditionalViews="False" IsLayoutActiveAttribute="False" MainViewAttribute="Code" MainViewScale="50">
+    <View Name="Design" Visible="False" />
+    <View Name="Code" Visible="True">
+      <Data />
+    </View>
+    <View Name="Data" Active="True" Visible="True" />
+    <View Name="Profiler" Visible="False" />
+    <View Name="PivotGrid" Visible="False" />
+  </Views>
+</Document>
