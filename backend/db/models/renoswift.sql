@@ -6,9 +6,9 @@
     isDeleted boolean default false,
     createdBy varchar(255),
     modifiedBy varchar(255),
-    createdDate datetime default NOW() not null,
-    modifiedDate datetime default NOW() not null,
-    DBTimeStamp datetime default NOW() not null
+    createdDate datetime default CURRENT_TIMESTAMP not null,
+    modifiedDate datetime default CURRENT_TIMESTAMP not null,
+    DBTimeStamp datetime default CURRENT_TIMESTAMP not null
 );
 
 insert into
@@ -33,9 +33,9 @@ CREATE TABLE Admin (
     isDeleted boolean default false,
     createdBy varchar(255),
     modifiedBy varchar(255),
-    createdDate datetime default NOW() not null,
-    modifiedDate datetime default NOW() not null,
-    DBTimeStamp datetime default NOW() not null,
+    createdDate datetime default CURRENT_TIMESTAMP not null,
+    modifiedDate datetime default CURRENT_TIMESTAMP not null,
+    DBTimeStamp datetime default CURRENT_TIMESTAMP not null,
     foreign key (role) references UserRole (id)
 );
 
@@ -66,9 +66,9 @@ create table User(
     isDeleted boolean default false,
     createdBy varchar(255),
     modifiedBy varchar(255),
-    createdDate datetime default NOW() not null,
-    modifiedDate datetime default NOW() not null,
-    DBTimeStamp datetime default NOW() not null,
+    createdDate datetime default CURRENT_TIMESTAMP not null,
+    modifiedDate datetime default CURRENT_TIMESTAMP not null,
+    DBTimeStamp datetime default CURRENT_TIMESTAMP not null,
     foreign key (role) references UserRole (id)
 );
 
@@ -86,9 +86,9 @@ create table ProductType (
     isDeleted boolean default false,
     createdBy varchar(255),
     modifiedBy varchar(255),
-    createdDate datetime default NOW() not null,
-    modifiedDate datetime default NOW() not null,
-    DBTimeStamp datetime default NOW() not null
+    createdDate datetime default CURRENT_TIMESTAMP not null,
+    modifiedDate datetime default CURRENT_TIMESTAMP not null,
+    DBTimeStamp datetime default CURRENT_TIMESTAMP not null
 );
 
 insert into
@@ -114,9 +114,9 @@ create table UserProperty (
     isDeleted boolean default false,
     createdBy varchar(255),
     modifiedBy varchar(255),
-    createdDate datetime default NOW() not null,
-    modifiedDate datetime default NOW() not null,
-    DBTimeStamp datetime default NOW() not null,
+    createdDate datetime default CURRENT_TIMESTAMP not null,
+    modifiedDate datetime default CURRENT_TIMESTAMP not null,
+    DBTimeStamp datetime default CURRENT_TIMESTAMP not null,
     foreign key (type) references ProductType (id)
 );
 
@@ -143,9 +143,9 @@ create table PropertyAssets (
     isDeleted boolean default false,
     createdBy varchar(255),
     modifiedBy varchar(255),
-    createdDate datetime default NOW() not null,
-    modifiedDate datetime default NOW() not null,
-    DBTimeStamp datetime default NOW() not null
+    createdDate datetime default CURRENT_TIMESTAMP not null,
+    modifiedDate datetime default CURRENT_TIMESTAMP not null,
+    DBTimeStamp datetime default CURRENT_TIMESTAMP not null
 );
 
 create table UserPropertyAssets (
@@ -160,9 +160,9 @@ create table UserPropertyAssets (
     isDeleted boolean default false,
     createdBy varchar(255),
     modifiedBy varchar(255),
-    createdDate datetime default NOW() not null,
-    modifiedDate datetime default NOW() not null,
-    DBTimeStamp datetime default NOW() not null,
+    createdDate datetime default CURRENT_TIMESTAMP not null,
+    modifiedDate datetime default CURRENT_TIMESTAMP not null,
+    DBTimeStamp datetime default CURRENT_TIMESTAMP not null,
     foreign key (userId) references User(id),
     foreign key (propertyType) references ProductType (id),
     foreign key (propertyId) references UserProperty (id)
@@ -178,9 +178,9 @@ create table OTP (
     isDeleted boolean default false,
     createdBy varchar(255),
     modifiedBy varchar(255),
-    createdDate datetime default NOW() not null,
-    modifiedDate datetime default NOW() not null,
-    DBTimeStamp datetime default NOW() not null,
+    createdDate datetime default CURRENT_TIMESTAMP not null,
+    modifiedDate datetime default CURRENT_TIMESTAMP not null,
+    DBTimeStamp datetime default CURRENT_TIMESTAMP not null,
     check (
         otp >= 1000
         and otp <= 9999
@@ -207,9 +207,9 @@ create table Quote (
     isDeleted boolean default false,
     createdBy varchar(255),
     modifiedBy varchar(255),
-    createdDate datetime default NOW() not null,
-    modifiedDate datetime default NOW() not null,
-    DBTimeStamp datetime default NOW() not null,
+    createdDate datetime default CURRENT_TIMESTAMP not null,
+    modifiedDate datetime default CURRENT_TIMESTAMP not null,
+    DBTimeStamp datetime default CURRENT_TIMESTAMP not null,
     foreign key (userId) references User(id),
     foreign key (propertyId) references UserProperty (id)
 );
@@ -242,9 +242,9 @@ CREATE TABLE OperationsTeam (
     isDeleted boolean default false,
     createdBy varchar(255),
     modifiedBy varchar(255),
-    createdDate datetime default NOW() not null,
-    modifiedDate datetime default NOW() not null,
-    DBTimeStamp datetime default NOW() not null,
+    createdDate datetime default CURRENT_TIMESTAMP not null,
+    modifiedDate datetime default CURRENT_TIMESTAMP not null,
+    DBTimeStamp datetime default CURRENT_TIMESTAMP not null,
     foreign key (role) references UserRole (id)
 );
 
@@ -259,9 +259,9 @@ CREATE TABLE QuoteStatus (
     isDeleted boolean default false,
     createdBy varchar(255),
     modifiedBy varchar(255),
-    createdDate datetime default NOW() not null,
-    modifiedDate datetime default NOW() not null,
-    DBTimeStamp datetime default NOW() not null,
+    createdDate datetime default CURRENT_TIMESTAMP not null,
+    modifiedDate datetime default CURRENT_TIMESTAMP not null,
+    DBTimeStamp datetime default CURRENT_TIMESTAMP not null,
     foreign key (quoteId) references Quote (quoteId)
 );
 
@@ -278,9 +278,9 @@ CREATE TABLE QuoteReply (
     isDeleted boolean default false,
     createdBy varchar(255),
     modifiedBy varchar(255),
-    createdDate datetime default NOW() not null,
-    modifiedDate datetime default NOW() not null,
-    DBTimeStamp datetime default NOW() not null,
+    createdDate datetime default CURRENT_TIMESTAMP not null,
+    modifiedDate datetime default CURRENT_TIMESTAMP not null,
+    DBTimeStamp datetime default CURRENT_TIMESTAMP not null,
     foreign key (quoteId) references Quote (quoteId)
 );
 
@@ -304,9 +304,9 @@ CREATE TABLE Payment (
     isDeleted boolean default false,
     createdBy varchar(255),
     modifiedBy varchar(255),
-    createdDate datetime default NOW() not null,
-    modifiedDate datetime default NOW() not null,
-    DBTimeStamp datetime default NOW() not null,
+    createdDate datetime default CURRENT_TIMESTAMP not null,
+    modifiedDate datetime default CURRENT_TIMESTAMP not null,
+    DBTimeStamp datetime default CURRENT_TIMESTAMP not null,
     foreign key (quoteId) references Quote (quoteId),
     foreign key (userId) references User(id)
 );
@@ -337,9 +337,9 @@ CREATE TABLE Order_ (
     isDeleted boolean default false,
     createdBy varchar(255),
     modifiedBy varchar(255),
-    createdDate datetime default NOW() not null,
-    modifiedDate datetime default NOW() not null,
-    DBTimeStamp datetime default NOW() not null,
+    createdDate datetime default CURRENT_TIMESTAMP not null,
+    modifiedDate datetime default CURRENT_TIMESTAMP not null,
+    DBTimeStamp datetime default CURRENT_TIMESTAMP not null,
     foreign key (quoteId) references Quote (quoteId),
     foreign key (userId) references User(id)
 );
@@ -357,9 +357,9 @@ CREATE TABLE OrderStatus (
     isDeleted boolean default false,
     createdBy varchar(255),
     modifiedBy varchar(255),
-    createdDate datetime default NOW() not null,
-    modifiedDate datetime default NOW() not null,
-    DBTimeStamp datetime default NOW() not null,
+    createdDate datetime default CURRENT_TIMESTAMP not null,
+    modifiedDate datetime default CURRENT_TIMESTAMP not null,
+    DBTimeStamp datetime default CURRENT_TIMESTAMP not null,
     foreign key (orderId) references Order_ (orderId)
 );
 
@@ -377,9 +377,9 @@ CREATE TABLE ProductSuppliers (
     isDeleted boolean default false,
     createdBy varchar(255),
     modifiedBy varchar(255),
-    createdDate datetime default NOW() not null,
-    modifiedDate datetime default NOW() not null,
-    DBTimeStamp datetime default NOW() not null
+    createdDate datetime default CURRENT_TIMESTAMP not null,
+    modifiedDate datetime default CURRENT_TIMESTAMP not null,
+    DBTimeStamp datetime default CURRENT_TIMESTAMP not null
 );
 
 DELIMITER $$
@@ -402,9 +402,9 @@ CREATE TABLE Brand (
     isDeleted boolean default false,
     createdBy varchar(255),
     modifiedBy varchar(255),
-    createdDate datetime default NOW() not null,
-    modifiedDate datetime default NOW() not null,
-    DBTimeStamp datetime default NOW() not null
+    createdDate datetime default CURRENT_TIMESTAMP not null,
+    modifiedDate datetime default CURRENT_TIMESTAMP not null,
+    DBTimeStamp datetime default CURRENT_TIMESTAMP not null
 );
 
 INSERT INTO
@@ -430,12 +430,11 @@ CREATE TABLE ProductSupplierBrands (
     isDeleted boolean default false,
     createdBy varchar(255),
     modifiedBy varchar(255),
-    createdDate datetime default NOW() not null,
-    modifiedDate datetime default NOW() not null,
-    DBTimeStamp datetime default NOW() not null,
+    createdDate datetime default CURRENT_TIMESTAMP not null,
+    modifiedDate datetime default CURRENT_TIMESTAMP not null,
+    DBTimeStamp datetime default CURRENT_TIMESTAMP not null,
     foreign key (brandId) references Brand (id),
     foreign key (supplierId) references ProductSuppliers (supplierId)
-    -- TODO: add foreign key for supplierId which was giving error
 );
 
 CREATE TABLE Products (
@@ -452,9 +451,9 @@ CREATE TABLE Products (
     isDeleted boolean default false,
     createdBy varchar(255),
     modifiedBy varchar(255),
-    createdDate datetime default NOW() not null,
-    modifiedDate datetime default NOW() not null,
-    DBTimeStamp datetime default NOW() not null,
+    createdDate datetime default CURRENT_TIMESTAMP not null,
+    modifiedDate datetime default CURRENT_TIMESTAMP not null,
+    DBTimeStamp datetime default CURRENT_TIMESTAMP not null,
     foreign key (brandId) references Brand (id),
     foreign key (supplierId) references ProductSuppliers (supplierId),
     foreign key (category) references ProductType (id)
@@ -492,9 +491,9 @@ CREATE TABLE ProductImages (
     isDeleted boolean default false,
     createdBy varchar(255),
     modifiedBy varchar(255),
-    createdDate datetime default NOW() not null,
-    modifiedDate datetime default NOW() not null,
-    DBTimeStamp datetime default NOW() not null,
+    createdDate datetime default CURRENT_TIMESTAMP not null,
+    modifiedDate datetime default CURRENT_TIMESTAMP not null,
+    DBTimeStamp datetime default CURRENT_TIMESTAMP not null,
     foreign key (productId) references Products (productId)
 );
 
@@ -509,9 +508,9 @@ CREATE TABLE vr (
     isDeleted boolean default false,
     createdBy varchar(255),
     modifiedBy varchar(255),
-    createdDate datetime default NOW() not null,
-    modifiedDate datetime default NOW() not null,
-    DBTimeStamp datetime default NOW() not null,
+    createdDate datetime default CURRENT_TIMESTAMP not null,
+    modifiedDate datetime default CURRENT_TIMESTAMP not null,
+    DBTimeStamp datetime default CURRENT_TIMESTAMP not null,
     FOREIGN KEY (orderId) REFERENCES Order_ (orderId)
 );
 
@@ -525,9 +524,9 @@ CREATE TABLE Review (
     isDeleted boolean default false,
     createdBy varchar(255),
     modifiedBy varchar(255),
-    createdDate datetime default NOW() not null,
-    modifiedDate datetime default NOW() not null,
-    DBTimeStamp datetime default NOW() not null,
+    createdDate datetime default CURRENT_TIMESTAMP not null,
+    modifiedDate datetime default CURRENT_TIMESTAMP not null,
+    DBTimeStamp datetime default CURRENT_TIMESTAMP not null,
     FOREIGN KEY (customerId) REFERENCES User(id),
     CHECK (rate <= 5)
 );
@@ -548,9 +547,9 @@ create table Developer (
     isDeleted boolean default false,
     createdBy varchar(255),
     modifiedBy varchar(255),
-    createdDate datetime default NOW() not null,
-    modifiedDate datetime default NOW() not null,
-    DBTimeStamp datetime default NOW() not null,
+    createdDate datetime default CURRENT_TIMESTAMP not null,
+    modifiedDate datetime default CURRENT_TIMESTAMP not null,
+    DBTimeStamp datetime default CURRENT_TIMESTAMP not null,
     foreign key (role) references UserRole (id),
     CHECK (role = 6)
 );
