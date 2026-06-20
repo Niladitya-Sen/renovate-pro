@@ -272,7 +272,7 @@ CREATE TABLE QuoteReply (
 CREATE TABLE Payment (
     id bigint primary key auto_increment,
     userId bigint not null,
-    paymentId varchar(200) unique not null,
+    paymentId varchar(200) unique,
     quoteId varchar(200),
     status enum(
         'initiated',
@@ -300,12 +300,14 @@ ALTER TABLE Payment ADD COLUMN receipt varchar(200) not null;
 
 DELIMITER $$
 
-CREATE TRIGGER generate_paymentId BEFORE INSERT ON Payment
+CREATE TRIGGER generate_paymentId AFTER INSERT ON Payment
 FOR EACH ROW
 BEGIN
-    DECLARE padded_id VARCHAR(200);
-    SET padded_id = LPAD(NEW.id, 4, '0'); -- Ensure at least 4 digits, padding with zeros if necessary
-    SET NEW.paymentId = CONCAT('RSP', padded_id);
+    UPDATE Payment
+    SET
+        paymentId = CONCAT('RSP', LPAD(id, 4, '0'))
+    WHERE
+        id = NEW.id;
 END $$
 
 DELIMITER ;
@@ -349,7 +351,7 @@ CREATE TABLE OrderStatus (
 
 CREATE TABLE ProductSuppliers (
     id bigint primary key auto_increment,
-    supplierId varchar(200) not null unique,
+    supplierId varchar(200) unique,
     name varchar(255) not null,
     email varchar(255) unique not null,
     phoneNumber varchar(20) unique not null,
@@ -368,12 +370,14 @@ CREATE TABLE ProductSuppliers (
 
 DELIMITER $$
 
-CREATE TRIGGER generate_supplierId BEFORE INSERT ON ProductSuppliers
+CREATE TRIGGER generate_supplierId AFTER INSERT ON ProductSuppliers
 FOR EACH ROW
 BEGIN
-    DECLARE padded_id VARCHAR(200);
-    SET padded_id = LPAD((SELECT COUNT(id) as id FROM ProductSuppliers), 4, '0'); -- Ensure at least 4 digits, padding with zeros if necessary
-    SET NEW.supplierId = CONCAT('SP', padded_id);
+    UPDATE ProductSuppliers
+    SET
+        supplierId = CONCAT('PS', LPAD(id, 4, '0'))
+    WHERE
+        id = NEW.id;
 END $$
 
 DELIMITER ;
@@ -423,7 +427,7 @@ CREATE TABLE ProductSupplierBrands (
 
 CREATE TABLE Products (
     id bigint primary key auto_increment,
-    productId varchar(200) unique not null,
+    productId varchar(200) unique,
     supplierId varchar(200) not null,
     name varchar(200) not null,
     category int not null,
@@ -445,23 +449,11 @@ CREATE TABLE Products (
 
 DELIMITER $$
 
-CREATE TRIGGER generate_paymentId BEFORE INSERT ON Payment
-FOR EACH ROW
+CREATE TRIGGER generateProductId AFTER INSERT ON Products FOR EACH ROW 
 BEGIN
-    DECLARE padded_id VARCHAR(200);
-    SET padded_id = LPAD(NEW.id, 4, '0'); -- Ensure at least 4 digits, padding with zeros if necessary
-    SET NEW.paymentId = CONCAT('RSP', padded_id);
-END $$
-
-DELIMITER ;
-
-DELIMITER $$
-
-CREATE TRIGGER generateProductId BEFORE INSERT ON Products FOR EACH ROW 
-BEGIN
-    DECLARE padded_id VARCHAR(200);
-    SET padded_id = LPAD(NEW.id, 4, '0'); -- Ensure at least 4 digits, padding with zeros if necessary
-    SET NEW.productId = CONCAT('RSO', padded_id);
+    UPDATE Products
+    SET productId = CONCAT('RSO', LPAD(id, 4, '0'))
+    WHERE id = NEW.id;
 END $$
 
 DELIMITER ;
