@@ -268,10 +268,6 @@ DBTimeStamp datetime default NOW() not null,
 foreign key(quoteId) references Quote(quoteId)
 );
 
-ALTER TABLE QuoteReply MODIFY COLUMN amount double;
-
-
-
 CREATE TABLE Payment (
 id bigint primary key auto_increment,
 userId bigint not null,
