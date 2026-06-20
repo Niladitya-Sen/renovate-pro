@@ -363,14 +363,15 @@ modifiedDate datetime default NOW() not null,
 DBTimeStamp datetime default NOW() not null
 );
 
-
+DELIMITER $$
 CREATE TRIGGER generate_supplierId BEFORE INSERT ON ProductSuppliers
 FOR EACH ROW
 BEGIN
     DECLARE padded_id VARCHAR(200);
     SET padded_id = LPAD((SELECT COUNT(id) as id FROM ProductSuppliers), 4, '0'); -- Ensure at least 4 digits, padding with zeros if necessary
     SET NEW.supplierId = CONCAT('SP', padded_id);
-END;
+END $$
+DELIMITER ;
 
 
 CREATE TABLE Brand (
@@ -430,20 +431,24 @@ CREATE TABLE Products (
   foreign key(category) references ProductType(id)
 );
 
+DELIMITER $$
 CREATE TRIGGER generate_paymentId BEFORE INSERT ON Payment
 FOR EACH ROW
 BEGIN
     DECLARE padded_id VARCHAR(200);
-    SET padded_id = LPAD((SELECT COUNT(id) as id FROM Payment), 4, '0'); -- Ensure at least 4 digits, padding with zeros if necessary
+    SET padded_id = LPAD(NEW.id, 4, '0'); -- Ensure at least 4 digits, padding with zeros if necessary
     SET NEW.paymentId = CONCAT('RSP', padded_id);
-END;
+END $$
+DELIMITER ;
 
+DELIMITER $$
 CREATE TRIGGER generateProductId BEFORE INSERT ON Products FOR EACH ROW 
 BEGIN
     DECLARE padded_id VARCHAR(200);
-    SET padded_id = LPAD((SELECT COUNT(id) as id FROM Products), 4, '0'); -- Ensure at least 4 digits, padding with zeros if necessary
+    SET padded_id = LPAD(NEW.id, 4, '0'); -- Ensure at least 4 digits, padding with zeros if necessary
     SET NEW.productId = CONCAT('RSO', padded_id);
-END;
+END $$
+DELIMITER ;
 
 CREATE TABLE ProductImages (
   id bigint primary key auto_increment,
