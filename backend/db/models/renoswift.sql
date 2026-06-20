@@ -298,7 +298,7 @@ CREATE TABLE Payment (
 
 ALTER TABLE Payment ADD COLUMN receipt varchar(200) not null;
 
-DELIMITER / /
+DELIMITER //
 
 CREATE TRIGGER generate_paymentId BEFORE INSERT ON Payment
 FOR EACH ROW
