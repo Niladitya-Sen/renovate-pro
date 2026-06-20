@@ -298,7 +298,7 @@ CREATE TABLE Payment (
 
 ALTER TABLE Payment ADD COLUMN receipt varchar(200) not null;
 
-DELIMITER //
+DELIMITER $$
 
 CREATE TRIGGER generate_paymentId BEFORE INSERT ON Payment
 FOR EACH ROW
@@ -306,8 +306,7 @@ BEGIN
     DECLARE padded_id VARCHAR(200);
     SET padded_id = LPAD((SELECT COUNT(id) as id FROM Payment), 4, '0'); -- Ensure at least 4 digits, padding with zeros if necessary
     SET NEW.paymentId = CONCAT('RSP', padded_id);
-END;
-//
+END $$
 
 DELIMITER;
 
