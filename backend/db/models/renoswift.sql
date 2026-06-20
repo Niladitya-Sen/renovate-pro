@@ -493,7 +493,8 @@ CREATE TABLE vr (
 CREATE TABLE Review (
     id bigint AUTO_INCREMENT PRIMARY KEY NOT NULL,
     customerId bigint NOT NULL,
-    rate int NOT NULL,
+    rating int NOT NULL,
+    orderId varchar(200) NOT NULL,
     feedback text,
     isValid boolean default true,
     isActive boolean default true,
@@ -504,13 +505,10 @@ CREATE TABLE Review (
     modifiedDate datetime default CURRENT_TIMESTAMP not null,
     DBTimeStamp datetime default CURRENT_TIMESTAMP not null,
     FOREIGN KEY (customerId) REFERENCES User(id),
-    CHECK (rate <= 5)
+    FOREIGN KEY (orderId) REFERENCES Order_(orderId),
+    CHECK (rating <= 5)
 );
 
-ALTER TABLE Review
-ADD COLUMN orderId varchar(200) NOT NULL REFERENCES Order_ (orderId);
-
-ALTER TABLE Review RENAME COLUMN rate TO rating;
 
 create table Developer (
     id bigint primary key auto_increment,
