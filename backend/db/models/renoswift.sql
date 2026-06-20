@@ -304,11 +304,11 @@ CREATE TRIGGER generate_paymentId BEFORE INSERT ON Payment
 FOR EACH ROW
 BEGIN
     DECLARE padded_id VARCHAR(200);
-    SET padded_id = LPAD((SELECT COUNT(id) as id FROM Payment), 4, '0'); -- Ensure at least 4 digits, padding with zeros if necessary
+    SET padded_id = LPAD(NEW.id, 4, '0'); -- Ensure at least 4 digits, padding with zeros if necessary
     SET NEW.paymentId = CONCAT('RSP', padded_id);
 END $$
 
-DELIMITER;
+DELIMITER ;
 
 CREATE TABLE Order_ (
     id bigint primary key auto_increment,
@@ -376,7 +376,7 @@ BEGIN
     SET NEW.supplierId = CONCAT('SP', padded_id);
 END $$
 
-DELIMITER;
+DELIMITER ;
 
 CREATE TABLE Brand (
     id int primary key auto_increment,
@@ -453,7 +453,7 @@ BEGIN
     SET NEW.paymentId = CONCAT('RSP', padded_id);
 END $$
 
-DELIMITER;
+DELIMITER ;
 
 DELIMITER $$
 
@@ -464,7 +464,7 @@ BEGIN
     SET NEW.productId = CONCAT('RSO', padded_id);
 END $$
 
-DELIMITER;
+DELIMITER ;
 
 CREATE TABLE ProductImages (
     id bigint primary key auto_increment,
