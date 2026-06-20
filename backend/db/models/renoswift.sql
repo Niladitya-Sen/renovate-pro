@@ -214,21 +214,6 @@ create table Quote (
     foreign key (propertyId) references UserProperty (id)
 );
 
-DELIMITER / /
-
-CREATE TRIGGER generate_quoteId BEFORE INSERT ON Quote
-FOR EACH ROW
-BEGIN
-    DECLARE padded_id VARCHAR(200);
-    SET padded_id = LPAD((SELECT COUNT(id) as id FROM Quote), 4, '0'); -- Ensure at least 4 digits, padding with zeros if necessary
-    SET NEW.quoteId = CONCAT('RS', padded_id);
-END;
-//
-
-DELIMITER;
-
-DROP Trigger generate_quoteId;
-
 CREATE TABLE OperationsTeam (
     id bigint primary key auto_increment,
     name varchar(255) not null,
