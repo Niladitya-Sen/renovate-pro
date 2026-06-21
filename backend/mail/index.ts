@@ -1,20 +1,6 @@
-import nodemailer from "nodemailer";
 import ejs from "ejs";
 
 class MailService {
-  private readonly transporter: nodemailer.Transporter;
-
-  constructor() {
-    this.transporter = nodemailer.createTransport({
-      host: process.env.EMAIL_HOST,
-      port: Number(process.env.EMAIL_PORT),
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASSWORD,
-      },
-    });
-  }
-
   async sendMail({
     to,
     subject,
@@ -29,16 +15,37 @@ class MailService {
     authType: "Login" | "Signup";
   }) {
     try {
-      await this.transporter.sendMail({
-        from: process.env.EMAIL_USER,
-        to,
-        subject,
-        html: await ejs.renderFile("mail/templates/otp.ejs", {
-          name: name,
-          authType: authType,
-          otp: otp,
+      const response = await fetch("https://api.brevo.com/v3/smtp/email", {
+        headers: {
+          "Content-Type": "application/json",
+          "api-key": process.env.BREVO_API_KEY!,
+          accept: "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+          sender: {
+            name: process.env.SENDER_NAME!,
+            email: process.env.SENDER_EMAIL!,
+          },
+          to: [
+            {
+              email: to,
+              name: name,
+            },
+          ],
+          subject: subject,
+          htmlContent: await ejs.renderFile("mail/templates/otp.ejs", {
+            name: name,
+            authType: authType,
+            otp: otp,
+          }),
         }),
       });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Failed to send email:", errorData);
+      }
     } catch (e) {
       console.log(e);
     }
@@ -46,11 +53,26 @@ class MailService {
 
   async sendSubscriptionConfirmation({ to }: { to: string }) {
     try {
-      await this.transporter.sendMail({
-        from: process.env.EMAIL_USER,
-        to,
-        subject: "Thank You for Subscribing!",
-        html: await ejs.renderFile("mail/templates/subscribe.ejs"),
+      const response = await fetch("https://api.brevo.com/v3/smtp/email", {
+        headers: {
+          "Content-Type": "application/json",
+          "api-key": process.env.BREVO_API_KEY!,
+          accept: "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+          sender: {
+            name: process.env.SENDER_NAME!,
+            email: process.env.SENDER_EMAIL!,
+          },
+          to: [
+            {
+              email: to,
+            },
+          ],
+          subject: "Thank You for Subscribing!",
+          htmlContent: await ejs.renderFile("mail/templates/subscribe.ejs"),
+        }),
       });
     } catch (e) {
       console.log(e);
