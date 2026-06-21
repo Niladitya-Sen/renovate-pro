@@ -43,7 +43,7 @@ export default function Hero() {
             <motion.div
               initial={variants.scaleOut.hidden}
               whileInView={variants.scaleOut.visible}
-              className='h-[35rem] scale-105 bg-[url("/renovate-pro/assets/slide-1.jpg")] bg-no-repeat bg-center bg-cover p-8 flex flex-col items-center justify-center relative isolate after:content-[""] after:absolute after:inset-0 after:bg-gradient-to-r after:from-black/40 after:from-[50%] after:to-transparent after:-z-10'
+              className='h-[35rem] scale-105 bg-[url("/assets/slide-1.jpg")] bg-no-repeat bg-center bg-cover p-8 flex flex-col items-center justify-center relative isolate after:content-[""] after:absolute after:inset-0 after:bg-gradient-to-r after:from-black/40 after:from-[50%] after:to-transparent after:-z-10'
             >
               {/* <div className='max-w-lg text-center'>
                                 <motion.p
@@ -73,7 +73,7 @@ export default function Hero() {
             <motion.div
               initial={variants.scaleOut.hidden}
               whileInView={variants.scaleOut.visible}
-              className='h-[35rem] bg-[url("/renovate-pro/assets/slide-2.jpg")] bg-no-repeat bg-center bg-cover p-8 py-16 flex flex-col items-center justify-center relative isolate after:content-[""] after:absolute after:inset-0 after:bg-gradient-to-r after:from-black/40 after:from-[50%] after:to-transparent after:-z-10'
+              className='h-[35rem] bg-[url("/assets/slide-2.jpg")] bg-no-repeat bg-center bg-cover p-8 py-16 flex flex-col items-center justify-center relative isolate after:content-[""] after:absolute after:inset-0 after:bg-gradient-to-r after:from-black/40 after:from-[50%] after:to-transparent after:-z-10'
             >
               {/* <div className='max-w-lg text-center'>
                                 <motion.p
@@ -97,7 +97,7 @@ export default function Hero() {
             <motion.div
               initial={variants.scaleOut.hidden}
               whileInView={variants.scaleOut.visible}
-              className='h-[35rem] bg-[url("/renovate-pro/assets/slide-3.jpg")] bg-no-repeat bg-center bg-cover p-8 py-16 flex flex-col items-center justify-center relative isolate after:content-[""] after:absolute after:inset-0 after:bg-gradient-to-r after:from-black/50 after:from-[50%] after:to-transparent after:-z-10'
+              className='h-[35rem] bg-[url("/assets/slide-3.jpg")] bg-no-repeat bg-center bg-cover p-8 py-16 flex flex-col items-center justify-center relative isolate after:content-[""] after:absolute after:inset-0 after:bg-gradient-to-r after:from-black/50 after:from-[50%] after:to-transparent after:-z-10'
             >
               {/* <div className='max-w-lg text-center'>
                                 <motion.p

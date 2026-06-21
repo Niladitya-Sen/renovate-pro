@@ -4,7 +4,7 @@ export default function AuthLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <section className='bg-[url("/renovate-pro/assets/auth/authBg.webp")] bg-cover bg-center bg-no-repeat h-screen px-2 flex items-center'>
+    <section className='bg-[url("/assets/auth/authBg.webp")] bg-cover bg-center bg-no-repeat h-screen px-2 flex items-center'>
       {children}
     </section>
   );

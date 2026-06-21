@@ -15,17 +15,17 @@ const categories = [
   {
     title: "Essence",
     description: "Affordable & Functional",
-    image: "/renovate-pro/assets/product-3.png",
+    image: "/assets/product-3.png",
   },
   {
     title: "Elegance",
     description: "Balanced & Comprehensive",
-    image: "/renovate-pro/assets/product-2.png",
+    image: "/assets/product-2.png",
   },
   {
     title: "Luxe",
     description: "Customized & Exclusive",
-    image: "/renovate-pro/assets/product-1.png",
+    image: "/assets/product-1.png",
   },
 ];
 
