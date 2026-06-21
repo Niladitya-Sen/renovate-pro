@@ -48,7 +48,7 @@ INSERT INTO
     )
 VALUES (
         'Admin',
-        'admin@renoswift.com',
+        'admin@niladityasen.com',
         '1234567890',
         '1234'
     );
